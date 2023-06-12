@@ -16,7 +16,7 @@ miro.onReady(() => {
                         let selectedWidgets = await miro.board.selection.get()
 
                         var totalLoad = calculate(selectedWidgets)
-                        miro.showNotification("TOTAL LOAD: " + totalLoad);
+                        miro.showNotification("TOTAL STORY POINTS: " + totalLoad);
 
                         function calculate(widgets) {
                             return sumTagsValues(widgets, (a) => a.type)
@@ -28,19 +28,26 @@ miro.onReady(() => {
                                 var type = getType(item)
                                 if (type == 'CARD' || type == 'STICKER') {
                                     var tags = item.tags;
+                                    var azureCardsCustomFields = item.card.customFields;
                                     if (tags != undefined) {
                                         for (var i = 0; i < tags.length; i++) {
                                             let title = tags[i].title;
                                             //let color = tags[i].color;
                                             if (title.startsWith("E:") /*&& color == '#f24726'*/) {
-                                                var tagValue = title.substr(2, title.length).trim();
+                                                var tagValue = title.substr(2, title.length);
                                                 if(isNumeric(tagValue)){
                                                     sum = sum + parseFloat(tagValue);
                                                 }
                                                 
                                             }
+                                        }
+                                    }
+                                    if (azureCardsCustomFields != undefined) {
+                                        for (var i = 0; i < azureCardsCustomFields.length; i++) {
+                                            let title = azureCardsCustomFields[i].value;
+                                            //let color = tags[i].color;
                                             if (title.startsWith("SP:") /*&& color == '#f24726'*/) {
-                                                var tagValue = title.substr(3, title.length).trim();
+                                                var tagValue = title.substr(3, title.length);
                                                 if(isNumeric(tagValue)){
                                                     sum = sum + parseFloat(tagValue);
                                                 }
