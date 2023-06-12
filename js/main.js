@@ -28,7 +28,7 @@ miro.onReady(() => {
                                 var type = getType(item)
                                 if (type == 'CARD' || type == 'STICKER') {
                                     var tags = item.tags;
-                                    var azureCardsCustomFields = item.card.customFields;
+                                    var azureCardsCustomFields = item.card?.customFields;
                                     if (tags != undefined) {
                                         for (var i = 0; i < tags.length; i++) {
                                             let title = tags[i].title;
