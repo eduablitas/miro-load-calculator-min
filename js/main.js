@@ -32,7 +32,7 @@ miro.onReady(() => {
                                         for (var i = 0; i < tags.length; i++) {
                                             let title = tags[i].title;
                                             //let color = tags[i].color;
-                                            if (title.startsWith("E:") /*&& color == '#f24726'*/) {
+                                            if (title.startsWith("E:") || title.startsWith("SP:") /*&& color == '#f24726'*/) {
                                                 var tagValue = title.substr(2, title.length);
                                                 if(isNumeric(tagValue)){
                                                     sum = sum + parseFloat(tagValue);
